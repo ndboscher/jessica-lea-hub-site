@@ -140,6 +140,12 @@ function renderTree() {
       if (site) selectSite(site)
     })
   })
+
+  if (currentSite) {
+    treeRoot.querySelectorAll('.tree-button').forEach((button) => {
+      button.classList.toggle('is-active', button.dataset.siteKey === currentSite.key)
+    })
+  }
 }
 
 function selectSite(site) {
@@ -268,5 +274,5 @@ function saveFavorites(favorites) {
 function updateFavoriteButton() {
   if (!currentSite) return
   const favorites = getFavorites()
-  favoriteButton.textContent = favorites.has(currentSite.key) ? 'Remove favorite' : 'Add favorite'
+  favoriteButton.textContent = favorites.has(currentSite.key) ? '★ Remove favorite' : '☆ Add favorite'
 }

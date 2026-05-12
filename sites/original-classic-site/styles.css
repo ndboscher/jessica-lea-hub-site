@@ -459,6 +459,20 @@ h3 {
   transform: scale(1.08);
 }
 
+.about-portrait.profile-photo {
+  inset: 50% auto auto 50%;
+  width: calc(100% - 1.4rem);
+  height: calc(100% - 1.4rem);
+  max-width: 220px;
+  max-height: 220px;
+  object-fit: cover;
+  object-position: center;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #fff7ea;
+  border: 8px solid #fff7ea;
+}
+
 .contact-section {
   grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
   align-items: center;

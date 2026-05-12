@@ -263,6 +263,28 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 14ch; }
   box-shadow: var(--shadow);
 }
 
+.about-photo.profile-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 620px;
+  padding: 2rem;
+  background: rgba(255, 250, 240, 0.96);
+  border-radius: 36px;
+  box-shadow: var(--shadow);
+}
+
+.about-photo.profile-frame .profile-photo {
+  width: min(100%, 400px);
+  min-height: 0;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
+  background: #fff7ea;
+}
+
 .about-copy blockquote {
   margin: 2rem 0 0;
   padding-left: 1.2rem;
