@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jessica Lea | Variation Hub</title>
+  <meta
+    name="description"
+    content="A single hub for browsing and editing all Jessica Lea site variations from one GitHub Pages-style interface."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-head">
+        <p class="eyebrow">Jessica Lea</p>
+        <h1>Site hub</h1>
+        <p class="sidebar-copy">
+          One parent/child tree for every variation, plus live in-browser editing for the selected
+          preview.
+        </p>
+      </div>
+
+      <nav class="tree-nav" aria-label="Jessica Lea site tree">
+        <div id="tree-root"></div>
+      </nav>
+    </aside>
+
+    <main class="workspace">
+      <header class="workspace-bar">
+        <div>
+          <p class="workspace-label">Current variation</p>
+          <h2 id="current-title">Loading...</h2>
+        </div>
+
+        <div class="workspace-actions">
+          <label class="toggle">
+            <input id="edit-toggle" type="checkbox">
+            <span>Edit mode</span>
+          </label>
+          <button id="save-button" class="button button-primary" type="button">Save edits</button>
+          <button id="reset-button" class="button button-secondary" type="button">Reset selected</button>
+          <a id="open-link" class="button button-secondary" href="#" target="_blank" rel="noreferrer">Open standalone</a>
+        </div>
+      </header>
+
+      <section class="workspace-grid">
+        <div class="preview-panel">
+          <iframe id="site-frame" title="Jessica Lea site preview"></iframe>
+        </div>
+
+        <aside class="editor-panel">
+          <p class="eyebrow">Live editing</p>
+          <h3>Edit variations on the fly</h3>
+          <ol class="help-list">
+            <li>Select any variation from the tree.</li>
+            <li>Turn on <strong>Edit mode</strong>.</li>
+            <li>Click into the preview and type directly on headings, paragraphs, links, and lists.</li>
+            <li>Press <strong>Save edits</strong> to keep changes for that variation in your browser.</li>
+            <li>Use <strong>Reset selected</strong> to clear saved edits for only the current variation.</li>
+          </ol>
+
+          <div class="status-card">
+            <p class="status-label">Selected path</p>
+            <code id="current-path">-</code>
+          </div>
+
+          <div class="status-card">
+            <p class="status-label">Included variations</p>
+            <ul class="included-list">
+              <li>Original site</li>
+              <li>Immersive Three.js concept</li>
+              <li>Live site</li>
+              <li>Authority / Keynote / Narrative</li>
+              <li>Authority v2 / Keynote v2 / Narrative v2</li>
+            </ul>
+          </div>
+        </aside>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
