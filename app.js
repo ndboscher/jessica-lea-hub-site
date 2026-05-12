@@ -28,9 +28,9 @@ const siteTree = [
   {
     group: 'Pheonix variations',
     children: [
-      { key: 'authority-phoenix-site', title: 'Authority Phoenix', note: 'Authority concept with pheonix-logo', path: 'sites/authority-phoenix-site/index.html' },
-      { key: 'keynote-phoenix-site', title: 'Keynote Phoenix', note: 'Keynote concept with pheonix-logo', path: 'sites/keynote-phoenix-site/index.html' },
-      { key: 'narrative-phoenix-site', title: 'Narrative Phoenix', note: 'Narrative concept with pheonix-logo', path: 'sites/narrative-phoenix-site/index.html' },
+      { key: 'authority-phoenix-site', title: 'Authority Phoenix', note: 'Regenerated authority concept with Group 18 logo', path: 'sites/authority-phoenix-site/index.html' },
+      { key: 'keynote-phoenix-site', title: 'Keynote Phoenix', note: 'Regenerated keynote concept with Group 18 logo', path: 'sites/keynote-phoenix-site/index.html' },
+      { key: 'narrative-phoenix-site', title: 'Narrative Phoenix', note: 'Regenerated narrative concept with Group 18 logo', path: 'sites/narrative-phoenix-site/index.html' },
     ],
   },
 ]
