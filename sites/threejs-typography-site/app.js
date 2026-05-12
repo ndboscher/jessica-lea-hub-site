@@ -141,7 +141,7 @@ function addLogoSculpture() {
   loader.load(
     'assets/jessica-lea-logo.svg',
     (data) => {
-      const buildLogoLayer = (opacity, zOffset) => {
+      const buildLogoLayer = (opacity, zOffset, scale) => {
         const layer = new THREE.Group()
 
         data.paths.forEach((path) => {
@@ -173,19 +173,20 @@ function addLogoSculpture() {
           })
         })
 
-        layer.scale.set(0.018, -0.018, 0.018)
+        layer.scale.set(scale, -scale, scale)
         const box = new THREE.Box3().setFromObject(layer)
         const center = box.getCenter(new THREE.Vector3())
         layer.position.sub(center)
         return layer
       }
 
-      const heroLogo = buildLogoLayer(0.88, 0)
-      const echoLogo = buildLogoLayer(0.18, -0.55)
+      const heroLogo = buildLogoLayer(0.92, 0, 0.024)
+      const echoLogo = buildLogoLayer(0.24, -0.45, 0.024)
+      const farEchoLogo = buildLogoLayer(0.08, -0.95, 0.024)
 
-      logoGroup.add(echoLogo, heroLogo)
-      logoGroup.position.set(-4.15, -0.1, -2.55)
-      logoGroup.rotation.set(-0.08, 0.72, -0.08)
+      logoGroup.add(farEchoLogo, echoLogo, heroLogo)
+      logoGroup.position.set(-0.35, 0.2, -1.95)
+      logoGroup.rotation.set(-0.12, 0.52, -0.04)
     },
     undefined,
     (error) => {
@@ -204,8 +205,8 @@ function loadTypography() {
         depth: 0.18,
         color: 0xeef2ff,
         emissive: 0x2f2f54,
-        position: [0, 1.4, 0],
-        rotation: [-0.08, -0.42, -0.02],
+        position: [-2.6, 2.15, 0.2],
+        rotation: [-0.18, 0.18, -0.04],
       })
 
       addWord(font, 'ALIGNMENT', {
@@ -213,8 +214,8 @@ function loadTypography() {
         depth: 0.14,
         color: 0x5bd5ff,
         emissive: 0x123d52,
-        position: [-0.55, 0, -0.55],
-        rotation: [0.16, 0.34, -0.08],
+        position: [2.35, 1.05, -0.95],
+        rotation: [0.16, -0.34, 0.04],
       })
 
       addWord(font, 'MOMENTUM', {
@@ -222,8 +223,8 @@ function loadTypography() {
         depth: 0.12,
         color: 0xffb366,
         emissive: 0x55240f,
-        position: [0.85, -1.55, 0.2],
-        rotation: [-0.15, -0.2, 0.12],
+        position: [1.75, -2.2, 0.35],
+        rotation: [-0.12, -0.18, 0.16],
       })
 
       addWord(font, 'INSIGHT', {
@@ -231,8 +232,8 @@ function loadTypography() {
         depth: 0.1,
         color: 0xcfb4ff,
         emissive: 0x2f1b52,
-        position: [-2.85, 1.45, -1.1],
-        rotation: [0.2, 0.55, -0.2],
+        position: [-2.7, -1.4, -1.2],
+        rotation: [0.12, 0.56, -0.12],
       })
 
       addWord(font, 'DECISION', {
@@ -240,8 +241,8 @@ function loadTypography() {
         depth: 0.08,
         color: 0xeef2ff,
         emissive: 0x252544,
-        position: [2.35, 1.7, -1.4],
-        rotation: [-0.18, -0.55, 0.08],
+        position: [0.45, 3.05, -1.1],
+        rotation: [-0.16, -0.08, 0.02],
       })
     },
     undefined,
@@ -273,11 +274,11 @@ function animate(time) {
   portraitGroup.rotation.y = -0.45 + pointer.x * 0.18
   portraitGroup.rotation.x = -0.12 + pointer.y * 0.1
   portraitGroup.position.y = Math.sin(t * 0.7) * 0.12
-  portraitGroup.position.x = 3.65 + Math.cos(t * 0.45) * 0.08
+  portraitGroup.position.x = 4.35 + Math.cos(t * 0.45) * 0.08
 
-  logoGroup.rotation.y = 0.72 + pointer.x * 0.14 + Math.sin(t * 0.22) * 0.06
-  logoGroup.rotation.x = -0.08 + pointer.y * 0.06
-  logoGroup.position.y = -0.1 + Math.cos(t * 0.5) * 0.08
+  logoGroup.rotation.y = 0.52 + pointer.x * 0.1 + Math.sin(t * 0.22) * 0.05
+  logoGroup.rotation.x = -0.12 + pointer.y * 0.05
+  logoGroup.position.y = 0.2 + Math.cos(t * 0.5) * 0.1
 
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
