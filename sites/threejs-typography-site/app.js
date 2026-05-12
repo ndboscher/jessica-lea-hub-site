@@ -26,14 +26,8 @@ scene.add(typographyGroup)
 const scaffoldGroup = new THREE.Group()
 scene.add(scaffoldGroup)
 
-const portraitGroup = new THREE.Group()
-scene.add(portraitGroup)
-
 const logoGroup = new THREE.Group()
 scene.add(logoGroup)
-
-const artworkGroup = new THREE.Group()
-scene.add(artworkGroup)
 
 const pointer = { x: 0, y: 0 }
 
@@ -109,35 +103,6 @@ function addWord(font, text, options) {
   typographyGroup.add(mesh)
 }
 
-function addPortraitCard() {
-  const texture = new THREE.TextureLoader().load('assets/jessica-linkedin-keynote-1.jpg')
-  texture.colorSpace = THREE.SRGBColorSpace
-
-  const card = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.35, 2.95, 1, 1),
-    new THREE.MeshBasicMaterial({
-      map: texture,
-      transparent: true,
-    })
-  )
-
-  const frame = new THREE.Mesh(
-    new THREE.PlaneGeometry(2.55, 3.15, 1, 1),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xeef2ff,
-      roughness: 0.22,
-      metalness: 0.08,
-      transparent: true,
-      opacity: 0.14,
-    })
-  )
-
-  portraitGroup.position.set(3.65, -0.05, -1.25)
-  portraitGroup.rotation.set(-0.12, -0.45, 0.06)
-  frame.position.z = -0.03
-  portraitGroup.add(frame, card)
-}
-
 function addLogoSculpture() {
   const loader = new SVGLoader()
 
@@ -183,13 +148,13 @@ function addLogoSculpture() {
         return layer
       }
 
-      const heroLogo = buildLogoLayer(0.95, 0, 0.032)
-      const echoLogo = buildLogoLayer(0.28, -0.45, 0.032)
-      const farEchoLogo = buildLogoLayer(0.1, -0.95, 0.032)
+      const heroLogo = buildLogoLayer(0.98, 0, 0.036)
+      const echoLogo = buildLogoLayer(0.22, -0.45, 0.036)
+      const farEchoLogo = buildLogoLayer(0.08, -0.95, 0.036)
 
       logoGroup.add(farEchoLogo, echoLogo, heroLogo)
-      logoGroup.position.set(-0.1, 0.45, -1.75)
-      logoGroup.rotation.set(-0.16, 0.34, -0.03)
+      logoGroup.position.set(0.1, 0.2, -1.55)
+      logoGroup.rotation.set(-0.14, 0.22, -0.02)
     },
     undefined,
     (error) => {
@@ -198,108 +163,35 @@ function addLogoSculpture() {
   )
 }
 
-function addArtworkFragments() {
-  const texture = new THREE.TextureLoader().load('assets/jessica-lea-logo.svg')
-  texture.colorSpace = THREE.SRGBColorSpace
-
-  const fragmentSpecs = [
-    { position: [-4.3, 2.75, -2.8], scale: 1.5, opacity: 0.18 },
-    { position: [4.0, 2.75, -2.5], scale: 1.1, opacity: 0.14 },
-    { position: [-3.9, -2.95, -2.7], scale: 1.18, opacity: 0.16 },
-    { position: [4.35, -2.45, -2.4], scale: 1.24, opacity: 0.12 },
-    { position: [0.25, 4.55, -3.2], scale: 0.94, opacity: 0.1 },
-  ]
-
-  fragmentSpecs.forEach((spec, index) => {
-    const sprite = new THREE.Sprite(
-      new THREE.SpriteMaterial({
-        map: texture,
-        transparent: true,
-        opacity: spec.opacity,
-        color: index % 2 === 0 ? 0xd8c4ff : 0x9fe8ff,
-        depthWrite: false,
-      })
-    )
-
-    sprite.position.set(...spec.position)
-    sprite.scale.set(1.61 * spec.scale, 2.32 * spec.scale, 1)
-    artworkGroup.add(sprite)
-  })
-
-  const halo = new THREE.Mesh(
-    new THREE.TorusGeometry(4.15, 0.11, 18, 180),
-    new THREE.MeshPhysicalMaterial({
-      color: 0xb67cff,
-      roughness: 0.18,
-      metalness: 0.24,
-      transparent: true,
-      opacity: 0.16,
-      emissive: 0x28194b,
-      emissiveIntensity: 0.7,
-    })
-  )
-
-  halo.rotation.set(1.05, 0.22, 0.38)
-  halo.position.set(0, 0.35, -0.25)
-  artworkGroup.add(halo)
-}
-
 function loadTypography() {
   const loader = new FontLoader()
   loader.load(
     'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/fonts/helvetiker_bold.typeface.json',
     (font) => {
       addWord(font, 'CLARITY', {
-        size: 0.95,
-        depth: 0.18,
+        size: 0.46,
+        depth: 0.1,
         color: 0xeef2ff,
         emissive: 0x2f2f54,
-        position: [-2.6, 2.15, 0.2],
-        rotation: [-0.18, 0.18, -0.04],
+        position: [-3.75, 1.85, -1.2],
+        rotation: [-0.12, 0.22, -0.04],
       })
 
       addWord(font, 'ALIGNMENT', {
-        size: 0.64,
-        depth: 0.14,
+        size: 0.34,
+        depth: 0.08,
         color: 0x5bd5ff,
         emissive: 0x123d52,
-        position: [3.05, 1.15, -0.95],
-        rotation: [0.16, -0.34, 0.04],
+        position: [4.0, 0.85, -1.3],
+        rotation: [0.12, -0.28, 0.04],
       })
 
       addWord(font, 'MOMENTUM', {
-        size: 0.54,
-        depth: 0.12,
+        size: 0.32,
+        depth: 0.08,
         color: 0xffb366,
         emissive: 0x55240f,
-        position: [2.55, -2.8, 0.35],
-        rotation: [-0.12, -0.18, 0.16],
-      })
-
-      addWord(font, 'INSIGHT', {
-        size: 0.4,
-        depth: 0.1,
-        color: 0xcfb4ff,
-        emissive: 0x2f1b52,
-        position: [-3.45, -2.05, -1.2],
-        rotation: [0.12, 0.56, -0.12],
-      })
-
-      addWord(font, 'DECISION', {
-        size: 0.34,
-        depth: 0.08,
-        color: 0xeef2ff,
-        emissive: 0x252544,
-        position: [0.45, 4.0, -1.1],
-        rotation: [-0.16, -0.08, 0.02],
-      })
-
-      addWord(font, 'TRANSFORMATION', {
-        size: 0.28,
-        depth: 0.07,
-        color: 0xffcf9a,
-        emissive: 0x4a2208,
-        position: [0.2, -4.2, -1.3],
+        position: [0.35, -3.35, -1.4],
         rotation: [0.08, 0.02, -0.02],
       })
     },
@@ -329,18 +221,9 @@ function animate(time) {
   typographyGroup.rotation.x = Math.sin(t * 0.45) * 0.08 + pointer.y * 0.18
   typographyGroup.position.y = Math.sin(t * 0.8) * 0.18
 
-  portraitGroup.rotation.y = -0.45 + pointer.x * 0.18
-  portraitGroup.rotation.x = -0.12 + pointer.y * 0.1
-  portraitGroup.position.y = Math.sin(t * 0.7) * 0.12
-  portraitGroup.position.x = 4.9 + Math.cos(t * 0.45) * 0.08
-
-  logoGroup.rotation.y = 0.34 + pointer.x * 0.08 + Math.sin(t * 0.22) * 0.05
+  logoGroup.rotation.y = 0.22 + pointer.x * 0.08 + Math.sin(t * 0.22) * 0.05
   logoGroup.rotation.x = -0.16 + pointer.y * 0.05
-  logoGroup.position.y = 0.45 + Math.cos(t * 0.5) * 0.12
-
-  artworkGroup.rotation.y = -0.08 + t * 0.08 + pointer.x * 0.05
-  artworkGroup.rotation.x = Math.sin(t * 0.28) * 0.03 + pointer.y * 0.03
-  artworkGroup.position.y = Math.sin(t * 0.55) * 0.06
+  logoGroup.position.y = 0.2 + Math.cos(t * 0.5) * 0.12
 
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
@@ -354,9 +237,7 @@ window.addEventListener('pointermove', (event) => {
 window.addEventListener('resize', resizeRenderer)
 
 createScaffold()
-addPortraitCard()
 addLogoSculpture()
-addArtworkFragments()
 loadTypography()
 resizeRenderer()
 requestAnimationFrame(animate)

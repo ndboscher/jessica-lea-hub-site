@@ -194,22 +194,7 @@ h2 {
 .hero-text { margin: 1.4rem 0 0; max-width: 58ch; }
 .hero-subtext { margin: 0.9rem 0 0; max-width: 60ch; }
 
-.hero-kicker {
-  display: inline-flex;
-  margin: 0 0 1rem;
-  padding: 0.55rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(255, 179, 102, 0.16);
-  border: 1px solid rgba(255, 179, 102, 0.28);
-  color: #ffd4a8;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
 .hero-panel,
-.hero-profile,
 .card-grid article,
 .image-card,
 .portrait-card,
@@ -228,7 +213,6 @@ h2 {
 }
 
 .hero-panel,
-.hero-profile,
 .contact-card {
   padding: 1.6rem;
   border-radius: 28px;
@@ -253,27 +237,6 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.92rem;
   font-weight: 700;
-}
-
-.art-note {
-  margin: 1rem 0 0;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(238, 242, 255, 0.1);
-}
-
-.hero-profile {
-  display: grid;
-  grid-template-columns: 140px minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-}
-
-.hero-profile img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center top;
-  border-radius: 20px;
 }
 
 .hero-actions {
@@ -407,9 +370,6 @@ h2 {
     max-width: 12ch;
   }
 
-  .hero-profile {
-    grid-template-columns: 1fr;
-  }
 }
 
 @media (max-width: 720px) {
