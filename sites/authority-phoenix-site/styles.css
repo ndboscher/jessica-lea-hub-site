@@ -53,11 +53,11 @@ h1, h2, h3, p, blockquote { margin-top: 0; }
 }
 
 .brand img {
-  width: 98px;
-  padding: 0.45rem;
-  background: linear-gradient(180deg, #200906 0%, #45120a 100%);
-  border-radius: 18px;
-  box-shadow: 0 18px 30px rgba(16, 29, 47, 0.18);
+  width: 88px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 .brand-name,
 .brand-tag,
