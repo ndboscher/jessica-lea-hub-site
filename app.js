@@ -3,6 +3,7 @@ const siteTree = [
     group: 'Originals',
     children: [
       { key: 'jessica-lea-executive', title: 'Jessica Lea Executive', note: 'Executive leadership coach site', path: 'sites/jessica-lea-executive/index.html' },
+      { key: 'jessica-lea-executive-live', title: 'Jessica Lea Executive Live', note: 'Imported from the published executive site', path: 'sites/jessica-lea-executive-live/index.html' },
       { key: 'original-classic-site', title: 'Original classic', note: 'Split classic layout', path: 'sites/original-classic-site/index.html' },
       { key: 'original-alternate-site', title: 'Original alternate', note: 'Split alternate layout', path: 'sites/original-alternate-site/index.html' },
       { key: 'immersive-concept', title: 'Immersive concept', note: 'Three.js build', path: 'sites/immersive-concept/index.html' },
