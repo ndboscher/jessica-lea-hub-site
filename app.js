@@ -11,6 +11,12 @@ const siteTree = [
     ],
   },
   {
+    group: 'Experiments',
+    children: [
+      { key: 'threejs-typography-site', title: 'Three.js Typography', note: 'Interactive typography concept for Jessica Lea', path: 'sites/threejs-typography-site/index.html' },
+    ],
+  },
+  {
     group: 'Concepts',
     children: [
       { key: 'authority-site', title: 'Authority', note: 'Personal authority direction', path: 'sites/authority-site/index.html' },
