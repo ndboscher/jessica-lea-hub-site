@@ -234,6 +234,12 @@ h2 {
   font-weight: 700;
 }
 
+.art-note {
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(238, 242, 255, 0.1);
+}
+
 .hero-profile {
   display: grid;
   grid-template-columns: 140px minmax(0, 1fr);

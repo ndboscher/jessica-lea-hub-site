@@ -32,6 +32,9 @@ scene.add(portraitGroup)
 const logoGroup = new THREE.Group()
 scene.add(logoGroup)
 
+const artworkGroup = new THREE.Group()
+scene.add(artworkGroup)
+
 const pointer = { x: 0, y: 0 }
 
 function createScaffold() {
@@ -195,6 +198,51 @@ function addLogoSculpture() {
   )
 }
 
+function addArtworkFragments() {
+  const texture = new THREE.TextureLoader().load('assets/jessica-lea-logo.svg')
+  texture.colorSpace = THREE.SRGBColorSpace
+
+  const fragmentSpecs = [
+    { position: [-3.8, 2.55, -2.8], scale: 1.3, opacity: 0.16 },
+    { position: [3.1, 2.35, -2.5], scale: 0.85, opacity: 0.12 },
+    { position: [-3.2, -2.4, -2.7], scale: 0.92, opacity: 0.14 },
+    { position: [3.75, -1.95, -2.4], scale: 1.05, opacity: 0.1 },
+    { position: [0.25, 3.95, -3.2], scale: 0.72, opacity: 0.08 },
+  ]
+
+  fragmentSpecs.forEach((spec, index) => {
+    const sprite = new THREE.Sprite(
+      new THREE.SpriteMaterial({
+        map: texture,
+        transparent: true,
+        opacity: spec.opacity,
+        color: index % 2 === 0 ? 0xd8c4ff : 0x9fe8ff,
+        depthWrite: false,
+      })
+    )
+
+    sprite.position.set(...spec.position)
+    sprite.scale.set(1.61 * spec.scale, 2.32 * spec.scale, 1)
+    artworkGroup.add(sprite)
+  })
+
+  const halo = new THREE.Mesh(
+    new THREE.TorusGeometry(3.35, 0.08, 18, 180),
+    new THREE.MeshPhysicalMaterial({
+      color: 0xb67cff,
+      roughness: 0.18,
+      metalness: 0.24,
+      transparent: true,
+      opacity: 0.16,
+      emissive: 0x28194b,
+      emissiveIntensity: 0.7,
+    })
+  )
+
+  halo.rotation.set(1.05, 0.22, 0.38)
+  artworkGroup.add(halo)
+}
+
 function loadTypography() {
   const loader = new FontLoader()
   loader.load(
@@ -280,6 +328,10 @@ function animate(time) {
   logoGroup.rotation.x = -0.12 + pointer.y * 0.05
   logoGroup.position.y = 0.2 + Math.cos(t * 0.5) * 0.1
 
+  artworkGroup.rotation.y = -0.08 + t * 0.08 + pointer.x * 0.05
+  artworkGroup.rotation.x = Math.sin(t * 0.28) * 0.03 + pointer.y * 0.03
+  artworkGroup.position.y = Math.sin(t * 0.55) * 0.06
+
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
 }
@@ -294,6 +346,7 @@ window.addEventListener('resize', resizeRenderer)
 createScaffold()
 addPortraitCard()
 addLogoSculpture()
+addArtworkFragments()
 loadTypography()
 resizeRenderer()
 requestAnimationFrame(animate)
