@@ -284,10 +284,11 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 14ch; }
   width: min(100%, 400px);
   min-height: 0;
   height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
+  aspect-ratio: 4 / 5;
+  object-fit: contain;
   object-position: center;
-  border-radius: 50%;
+  border-radius: 32px;
+  padding: 0.9rem;
   background: #fff7ea;
 }
 
