@@ -135,7 +135,7 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 14ch; }
 
 .button-primary {
   color: #fff;
-  background: linear-gradient(135deg, var(--primary), var(--primary-soft) 55%, var(--ink));
+  background: var(--primary);
   box-shadow: var(--shadow);
 }
 

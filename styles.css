@@ -250,7 +250,7 @@ textarea { font: inherit; }
 
 .button-primary {
   color: #fff;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+  background: var(--primary);
 }
 
 .button-secondary {

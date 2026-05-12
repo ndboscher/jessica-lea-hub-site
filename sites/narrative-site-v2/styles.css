@@ -271,7 +271,7 @@ h2 {
 
 .button-primary {
   color: #0a1e2f;
-  background: linear-gradient(135deg, var(--yellow), #ffd786 70%, var(--orange));
+  background: var(--yellow);
 }
 
 .button-secondary {

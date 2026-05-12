@@ -6,8 +6,8 @@ const siteTree = [
       { key: 'jessica-lea-executive-live', title: 'Jessica Lea Executive Live', note: 'Imported from the published executive site', path: 'sites/jessica-lea-executive-live/index.html' },
       { key: 'original-classic-site', title: 'Original classic', note: 'Split classic layout', path: 'sites/original-classic-site/index.html' },
       { key: 'original-alternate-site', title: 'Original alternate', note: 'Split alternate layout', path: 'sites/original-alternate-site/index.html' },
-      { key: 'immersive-concept', title: 'Immersive concept', note: 'Three.js build', path: 'sites/immersive-concept/index.html' },
-      { key: 'live-site', title: 'Live site', note: 'Refined one-page version', path: 'sites/live-site/index.html' },
+      { key: 'immersive-concept', title: 'Immersive concept', note: 'Three.js build', path: 'sites/immersive-concept/index.html?v=20260512o' },
+      { key: 'live-site', title: 'Live site', note: 'Refined one-page version', path: 'sites/live-site/index.html?v=20260512o' },
     ],
   },
   {
@@ -19,17 +19,17 @@ const siteTree = [
   {
     group: 'Concepts',
     children: [
-      { key: 'authority-site', title: 'Authority', note: 'Personal authority direction', path: 'sites/authority-site/index.html' },
-      { key: 'keynote-site', title: 'Keynote', note: 'Consulting + keynote direction', path: 'sites/keynote-site/index.html' },
-      { key: 'narrative-site', title: 'Narrative', note: 'Story-led one-page flow', path: 'sites/narrative-site/index.html' },
+      { key: 'authority-site', title: 'Authority', note: 'Personal authority direction', path: 'sites/authority-site/index.html?v=20260512o' },
+      { key: 'keynote-site', title: 'Keynote', note: 'Consulting + keynote direction', path: 'sites/keynote-site/index.html?v=20260512o' },
+      { key: 'narrative-site', title: 'Narrative', note: 'Story-led one-page flow', path: 'sites/narrative-site/index.html?v=20260512o' },
     ],
   },
   {
     group: 'Concepts v2',
     children: [
-      { key: 'authority-site-v2', title: 'Authority v2', note: 'Updated logo + palette', path: 'sites/authority-site-v2/index.html' },
-      { key: 'keynote-site-v2', title: 'Keynote v2', note: 'Updated logo + palette', path: 'sites/keynote-site-v2/index.html' },
-      { key: 'narrative-site-v2', title: 'Narrative v2', note: 'Updated logo + palette', path: 'sites/narrative-site-v2/index.html' },
+      { key: 'authority-site-v2', title: 'Authority v2', note: 'Updated logo + palette', path: 'sites/authority-site-v2/index.html?v=20260512o' },
+      { key: 'keynote-site-v2', title: 'Keynote v2', note: 'Updated logo + palette', path: 'sites/keynote-site-v2/index.html?v=20260512o' },
+      { key: 'narrative-site-v2', title: 'Narrative v2', note: 'Updated logo + palette', path: 'sites/narrative-site-v2/index.html?v=20260512o' },
     ],
   },
   {

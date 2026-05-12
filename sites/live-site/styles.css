@@ -136,7 +136,7 @@ ul {
 
 .button-primary {
   color: #fff;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-soft) 52%, var(--primary-deep) 100%);
+  background: var(--primary);
   box-shadow: var(--shadow);
 }
 
