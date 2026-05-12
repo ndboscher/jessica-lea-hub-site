@@ -195,6 +195,7 @@ h2 {
 .hero-subtext { margin: 0.9rem 0 0; max-width: 60ch; }
 
 .hero-panel,
+.hero-profile,
 .card-grid article,
 .image-card,
 .portrait-card,
@@ -206,9 +207,15 @@ h2 {
 }
 
 .hero-panel,
+.hero-profile,
 .contact-card {
   padding: 1.6rem;
   border-radius: 28px;
+}
+
+.hero-stack {
+  display: grid;
+  gap: 1rem;
 }
 
 .word-list {
@@ -225,6 +232,21 @@ h2 {
   border: 1px solid rgba(255, 255, 255, 0.08);
   font-size: 0.92rem;
   font-weight: 700;
+}
+
+.hero-profile {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.hero-profile img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 20px;
 }
 
 .hero-actions {
@@ -356,6 +378,10 @@ h2 {
 
   h1 {
     max-width: 12ch;
+  }
+
+  .hero-profile {
+    grid-template-columns: 1fr;
   }
 }
 

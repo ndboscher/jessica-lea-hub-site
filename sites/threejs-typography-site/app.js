@@ -25,6 +25,9 @@ scene.add(typographyGroup)
 const scaffoldGroup = new THREE.Group()
 scene.add(scaffoldGroup)
 
+const portraitGroup = new THREE.Group()
+scene.add(portraitGroup)
+
 const pointer = { x: 0, y: 0 }
 
 function createScaffold() {
@@ -99,6 +102,35 @@ function addWord(font, text, options) {
   typographyGroup.add(mesh)
 }
 
+function addPortraitCard() {
+  const texture = new THREE.TextureLoader().load('assets/jessica-linkedin-keynote-1.jpg')
+  texture.colorSpace = THREE.SRGBColorSpace
+
+  const card = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.35, 2.95, 1, 1),
+    new THREE.MeshBasicMaterial({
+      map: texture,
+      transparent: true,
+    })
+  )
+
+  const frame = new THREE.Mesh(
+    new THREE.PlaneGeometry(2.55, 3.15, 1, 1),
+    new THREE.MeshPhysicalMaterial({
+      color: 0xeef2ff,
+      roughness: 0.22,
+      metalness: 0.08,
+      transparent: true,
+      opacity: 0.14,
+    })
+  )
+
+  portraitGroup.position.set(3.65, -0.05, -1.25)
+  portraitGroup.rotation.set(-0.12, -0.45, 0.06)
+  frame.position.z = -0.03
+  portraitGroup.add(frame, card)
+}
+
 function loadTypography() {
   const loader = new FontLoader()
   loader.load(
@@ -130,6 +162,24 @@ function loadTypography() {
         position: [0.85, -1.55, 0.2],
         rotation: [-0.15, -0.2, 0.12],
       })
+
+      addWord(font, 'INSIGHT', {
+        size: 0.4,
+        depth: 0.1,
+        color: 0xcfb4ff,
+        emissive: 0x2f1b52,
+        position: [-2.85, 1.45, -1.1],
+        rotation: [0.2, 0.55, -0.2],
+      })
+
+      addWord(font, 'DECISION', {
+        size: 0.34,
+        depth: 0.08,
+        color: 0xeef2ff,
+        emissive: 0x252544,
+        position: [2.35, 1.7, -1.4],
+        rotation: [-0.18, -0.55, 0.08],
+      })
     },
     undefined,
     (error) => {
@@ -157,6 +207,11 @@ function animate(time) {
   typographyGroup.rotation.x = Math.sin(t * 0.45) * 0.08 + pointer.y * 0.18
   typographyGroup.position.y = Math.sin(t * 0.8) * 0.18
 
+  portraitGroup.rotation.y = -0.45 + pointer.x * 0.18
+  portraitGroup.rotation.x = -0.12 + pointer.y * 0.1
+  portraitGroup.position.y = Math.sin(t * 0.7) * 0.12
+  portraitGroup.position.x = 3.65 + Math.cos(t * 0.45) * 0.08
+
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
 }
@@ -169,6 +224,7 @@ window.addEventListener('pointermove', (event) => {
 window.addEventListener('resize', resizeRenderer)
 
 createScaffold()
+addPortraitCard()
 loadTypography()
 resizeRenderer()
 requestAnimationFrame(animate)
