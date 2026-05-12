@@ -1,6 +1,7 @@
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js'
 import { FontLoader } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/geometries/TextGeometry.js'
+import { SVGLoader } from 'https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/loaders/SVGLoader.js'
 
 const canvas = document.querySelector('#typography-canvas')
 const scene = new THREE.Scene()
@@ -27,6 +28,9 @@ scene.add(scaffoldGroup)
 
 const portraitGroup = new THREE.Group()
 scene.add(portraitGroup)
+
+const logoGroup = new THREE.Group()
+scene.add(logoGroup)
 
 const pointer = { x: 0, y: 0 }
 
@@ -131,6 +135,65 @@ function addPortraitCard() {
   portraitGroup.add(frame, card)
 }
 
+function addLogoSculpture() {
+  const loader = new SVGLoader()
+
+  loader.load(
+    'assets/jessica-lea-logo.svg',
+    (data) => {
+      const buildLogoLayer = (opacity, zOffset) => {
+        const layer = new THREE.Group()
+
+        data.paths.forEach((path) => {
+          const fill = path.userData?.style?.fill
+          if (!fill || fill === 'none') return
+
+          const shapes = SVGLoader.createShapes(path)
+          const color = new THREE.Color(fill)
+
+          shapes.forEach((shape) => {
+            const geometry = new THREE.ExtrudeGeometry(shape, {
+              depth: 4,
+              bevelEnabled: false,
+            })
+
+            const material = new THREE.MeshPhysicalMaterial({
+              color,
+              roughness: 0.24,
+              metalness: 0.14,
+              transparent: true,
+              opacity,
+              emissive: color.clone().multiplyScalar(0.18),
+              emissiveIntensity: 0.42,
+            })
+
+            const mesh = new THREE.Mesh(geometry, material)
+            mesh.position.z = zOffset
+            layer.add(mesh)
+          })
+        })
+
+        layer.scale.set(0.018, -0.018, 0.018)
+        const box = new THREE.Box3().setFromObject(layer)
+        const center = box.getCenter(new THREE.Vector3())
+        layer.position.sub(center)
+        return layer
+      }
+
+      const heroLogo = buildLogoLayer(0.88, 0)
+      const echoLogo = buildLogoLayer(0.18, -0.55)
+
+      logoGroup.add(echoLogo, heroLogo)
+      logoGroup.position.set(-4.15, -0.1, -2.55)
+      logoGroup.rotation.set(-0.08, 0.72, -0.08)
+    },
+    undefined,
+    (error) => {
+      console.error('Failed to load SVG logo for Three.js scene', error)
+    }
+  )
+}
+
 function loadTypography() {
   const loader = new FontLoader()
   loader.load(
@@ -212,6 +275,10 @@ function animate(time) {
   portraitGroup.position.y = Math.sin(t * 0.7) * 0.12
   portraitGroup.position.x = 3.65 + Math.cos(t * 0.45) * 0.08
 
+  logoGroup.rotation.y = 0.72 + pointer.x * 0.14 + Math.sin(t * 0.22) * 0.06
+  logoGroup.rotation.x = -0.08 + pointer.y * 0.06
+  logoGroup.position.y = -0.1 + Math.cos(t * 0.5) * 0.08
+
   renderer.render(scene, camera)
   requestAnimationFrame(animate)
 }
@@ -225,6 +292,7 @@ window.addEventListener('resize', resizeRenderer)
 
 createScaffold()
 addPortraitCard()
+addLogoSculpture()
 loadTypography()
 resizeRenderer()
 requestAnimationFrame(animate)
