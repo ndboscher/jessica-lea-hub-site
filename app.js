@@ -25,6 +25,14 @@ const siteTree = [
       { key: 'narrative-site-v2', title: 'Narrative v2', note: 'Updated logo + palette', path: 'sites/narrative-site-v2/index.html' },
     ],
   },
+  {
+    group: 'Pheonix variations',
+    children: [
+      { key: 'authority-phoenix-site', title: 'Authority Phoenix', note: 'Authority concept with pheonix-logo', path: 'sites/authority-phoenix-site/index.html' },
+      { key: 'keynote-phoenix-site', title: 'Keynote Phoenix', note: 'Keynote concept with pheonix-logo', path: 'sites/keynote-phoenix-site/index.html' },
+      { key: 'narrative-phoenix-site', title: 'Narrative Phoenix', note: 'Narrative concept with pheonix-logo', path: 'sites/narrative-phoenix-site/index.html' },
+    ],
+  },
 ]
 
 const treeRoot = document.querySelector('#tree-root')
