@@ -28,6 +28,13 @@
         </p>
       </div>
 
+      <div class="sidebar-controls">
+        <label class="toggle">
+          <input id="favorites-only-toggle" type="checkbox">
+          <span>Favorites only</span>
+        </label>
+      </div>
+
       <nav class="tree-nav" aria-label="Jessica Lea site tree">
         <div id="tree-root"></div>
       </nav>
@@ -41,6 +48,7 @@
         </div>
 
         <div class="workspace-actions">
+          <button id="favorite-button" class="button button-secondary" type="button">Add favorite</button>
           <label class="toggle">
             <input id="edit-toggle" type="checkbox">
             <span>Edit mode</span>
@@ -70,6 +78,15 @@
           <div class="status-card">
             <p class="status-label">Selected path</p>
             <code id="current-path">-</code>
+          </div>
+
+          <div class="status-card">
+            <p class="status-label">Notes for this site</p>
+            <textarea id="notes-input" class="notes-input" rows="8" placeholder="Add notes about this variation..."></textarea>
+            <div class="notes-actions">
+              <button id="clear-notes-button" class="button button-secondary" type="button">Clear notes</button>
+            </div>
+            <p id="notes-status" class="notes-status">Notes save automatically in this browser.</p>
           </div>
 
           <div class="status-card">

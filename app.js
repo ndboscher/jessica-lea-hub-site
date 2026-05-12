@@ -33,10 +33,16 @@ const title = document.querySelector('#current-title')
 const currentPath = document.querySelector('#current-path')
 const openLink = document.querySelector('#open-link')
 const editToggle = document.querySelector('#edit-toggle')
+const favoriteButton = document.querySelector('#favorite-button')
+const favoritesOnlyToggle = document.querySelector('#favorites-only-toggle')
 const saveButton = document.querySelector('#save-button')
 const resetButton = document.querySelector('#reset-button')
+const notesInput = document.querySelector('#notes-input')
+const clearNotesButton = document.querySelector('#clear-notes-button')
+const notesStatus = document.querySelector('#notes-status')
 
 let currentSite = null
+let notesTimeoutId = null
 
 renderTree()
 selectSite(siteTree[0].children[0])
@@ -58,6 +64,39 @@ resetButton.addEventListener('click', () => {
   frame.src = currentSite.path
 })
 
+favoriteButton.addEventListener('click', () => {
+  if (!currentSite) return
+  const favorites = getFavorites()
+
+  if (favorites.has(currentSite.key)) favorites.delete(currentSite.key)
+  else favorites.add(currentSite.key)
+
+  saveFavorites(favorites)
+  updateFavoriteButton()
+  renderTree()
+})
+
+favoritesOnlyToggle.addEventListener('change', () => {
+  renderTree()
+})
+
+notesInput.addEventListener('input', () => {
+  if (!currentSite) return
+  window.clearTimeout(notesTimeoutId)
+  notesStatus.textContent = 'Saving notes...'
+  notesTimeoutId = window.setTimeout(() => {
+    window.localStorage.setItem(notesKey(currentSite.key), notesInput.value)
+    notesStatus.textContent = 'Notes saved for this variation.'
+  }, 150)
+})
+
+clearNotesButton.addEventListener('click', () => {
+  if (!currentSite) return
+  window.localStorage.removeItem(notesKey(currentSite.key))
+  notesInput.value = ''
+  notesStatus.textContent = 'Notes cleared for this variation.'
+})
+
 frame.addEventListener('load', () => {
   if (!frame.contentDocument || !currentSite) return
   applyStoredEdits(currentSite.key, frame.contentDocument)
@@ -65,12 +104,22 @@ frame.addEventListener('load', () => {
 })
 
 function renderTree() {
+  const favorites = getFavorites()
+  const onlyFavorites = favoritesOnlyToggle.checked
+
   treeRoot.innerHTML = siteTree.map((group) => {
-    const items = group.children.map((site) => {
+    const visibleSites = group.children.filter((site) => !onlyFavorites || favorites.has(site.key))
+    if (visibleSites.length === 0) return ''
+
+    const items = visibleSites.map((site) => {
+      const favoriteMark = favorites.has(site.key) ? '<span class="favorite-mark" aria-hidden="true">★</span>' : ''
       return `
         <li class="tree-item">
           <button class="tree-button" data-site-key="${site.key}">
-            ${site.title}
+            <span class="tree-button-row">
+              <span>${site.title}</span>
+              ${favoriteMark}
+            </span>
             <small>${site.note}</small>
           </button>
         </li>
@@ -98,6 +147,9 @@ function selectSite(site) {
   title.textContent = site.title
   currentPath.textContent = site.path
   openLink.href = site.path
+  notesInput.value = window.localStorage.getItem(notesKey(site.key)) || ''
+  notesStatus.textContent = 'Notes save automatically in this browser.'
+  updateFavoriteButton()
   frame.src = site.path
 
   treeRoot.querySelectorAll('.tree-button').forEach((button) => {
@@ -188,4 +240,33 @@ function getNodePath(element) {
 
 function storageKey(siteKey) {
   return `jessica-lea-hub:${siteKey}`
+}
+
+function notesKey(siteKey) {
+  return `jessica-lea-hub:notes:${siteKey}`
+}
+
+function favoritesKey() {
+  return 'jessica-lea-hub:favorites'
+}
+
+function getFavorites() {
+  const raw = window.localStorage.getItem(favoritesKey())
+  if (!raw) return new Set()
+
+  try {
+    return new Set(JSON.parse(raw))
+  } catch {
+    return new Set()
+  }
+}
+
+function saveFavorites(favorites) {
+  window.localStorage.setItem(favoritesKey(), JSON.stringify(Array.from(favorites)))
+}
+
+function updateFavoriteButton() {
+  if (!currentSite) return
+  const favorites = getFavorites()
+  favoriteButton.textContent = favorites.has(currentSite.key) ? 'Remove favorite' : 'Add favorite'
 }
