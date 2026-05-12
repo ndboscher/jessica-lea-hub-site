@@ -2,7 +2,8 @@ const siteTree = [
   {
     group: 'Originals',
     children: [
-      { key: 'original-site', title: 'Original site', note: 'Classic static version', path: 'sites/original-site/index.html' },
+      { key: 'original-classic-site', title: 'Original classic', note: 'Split classic layout', path: 'sites/original-classic-site/index.html' },
+      { key: 'original-alternate-site', title: 'Original alternate', note: 'Split alternate layout', path: 'sites/original-alternate-site/index.html' },
       { key: 'immersive-concept', title: 'Immersive concept', note: 'Three.js build', path: 'sites/immersive-concept/index.html' },
       { key: 'live-site', title: 'Live site', note: 'Refined one-page version', path: 'sites/live-site/index.html' },
     ],
