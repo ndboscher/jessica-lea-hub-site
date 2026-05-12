@@ -157,13 +157,16 @@ h2 {
 }
 
 .button-primary {
-  color: #0a1e2f;
-  background: linear-gradient(135deg, var(--accent), #ffd382 60%, var(--secondary));
+  color: #160807;
+  background: var(--accent);
+  border-color: rgba(255, 209, 96, 0.26);
+  box-shadow: 0 14px 30px rgba(255, 134, 24, 0.16);
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 134, 24, 0.3);
+  background: transparent;
+  border-color: rgba(255, 209, 96, 0.32);
+  color: #fff6e7;
 }
 
 .marquee {

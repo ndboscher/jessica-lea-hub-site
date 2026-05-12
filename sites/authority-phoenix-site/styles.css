@@ -140,14 +140,16 @@ h2 { font-size: clamp(2rem, 4vw, 3.2rem); max-width: 14ch; }
 }
 
 .button-primary {
-  color: #fff;
-  background: linear-gradient(135deg, var(--primary), var(--primary-soft) 60%, var(--sun));
-  box-shadow: var(--shadow);
+  color: #fff8ea;
+  background: var(--primary);
+  border-color: rgba(76, 24, 12, 0.12);
+  box-shadow: 0 14px 30px rgba(143, 31, 14, 0.18);
 }
 
 .button-secondary {
-  background: rgba(255, 228, 191, 0.72);
-  border-color: rgba(143, 31, 14, 0.22);
+  background: transparent;
+  border-color: rgba(143, 31, 14, 0.28);
+  color: var(--ink);
 }
 
 .hero-portrait,

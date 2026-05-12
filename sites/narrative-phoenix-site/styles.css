@@ -270,13 +270,15 @@ h2 {
 }
 
 .button-primary {
-  color: #0a1e2f;
-  background: linear-gradient(135deg, var(--yellow), #ffd786 70%, var(--orange));
+  color: #fff8ea;
+  background: var(--primary);
+  border-color: rgba(157, 34, 15, 0.24);
+  box-shadow: 0 14px 30px rgba(157, 34, 15, 0.18);
 }
 
 .button-secondary {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
+  background: transparent;
+  border-color: rgba(255, 248, 234, 0.28);
   color: #fff8ea;
 }
 
