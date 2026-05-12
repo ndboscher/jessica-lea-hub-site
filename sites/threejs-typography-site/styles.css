@@ -194,6 +194,20 @@ h2 {
 .hero-text { margin: 1.4rem 0 0; max-width: 58ch; }
 .hero-subtext { margin: 0.9rem 0 0; max-width: 60ch; }
 
+.hero-kicker {
+  display: inline-flex;
+  margin: 0 0 1rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 179, 102, 0.16);
+  border: 1px solid rgba(255, 179, 102, 0.28);
+  color: #ffd4a8;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
 .hero-panel,
 .hero-profile,
 .card-grid article,
@@ -204,6 +218,13 @@ h2 {
   border: 1px solid var(--line);
   box-shadow: var(--shadow);
   backdrop-filter: blur(20px);
+}
+
+.hero-panel {
+  background:
+    linear-gradient(180deg, rgba(182, 124, 255, 0.12), rgba(12, 16, 32, 0.82)),
+    rgba(12, 16, 32, 0.82);
+  border-color: rgba(182, 124, 255, 0.18);
 }
 
 .hero-panel,

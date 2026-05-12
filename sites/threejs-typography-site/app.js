@@ -183,13 +183,13 @@ function addLogoSculpture() {
         return layer
       }
 
-      const heroLogo = buildLogoLayer(0.92, 0, 0.024)
-      const echoLogo = buildLogoLayer(0.24, -0.45, 0.024)
-      const farEchoLogo = buildLogoLayer(0.08, -0.95, 0.024)
+      const heroLogo = buildLogoLayer(0.95, 0, 0.032)
+      const echoLogo = buildLogoLayer(0.28, -0.45, 0.032)
+      const farEchoLogo = buildLogoLayer(0.1, -0.95, 0.032)
 
       logoGroup.add(farEchoLogo, echoLogo, heroLogo)
-      logoGroup.position.set(-0.35, 0.2, -1.95)
-      logoGroup.rotation.set(-0.12, 0.52, -0.04)
+      logoGroup.position.set(-0.1, 0.45, -1.75)
+      logoGroup.rotation.set(-0.16, 0.34, -0.03)
     },
     undefined,
     (error) => {
@@ -203,11 +203,11 @@ function addArtworkFragments() {
   texture.colorSpace = THREE.SRGBColorSpace
 
   const fragmentSpecs = [
-    { position: [-3.8, 2.55, -2.8], scale: 1.3, opacity: 0.16 },
-    { position: [3.1, 2.35, -2.5], scale: 0.85, opacity: 0.12 },
-    { position: [-3.2, -2.4, -2.7], scale: 0.92, opacity: 0.14 },
-    { position: [3.75, -1.95, -2.4], scale: 1.05, opacity: 0.1 },
-    { position: [0.25, 3.95, -3.2], scale: 0.72, opacity: 0.08 },
+    { position: [-4.3, 2.75, -2.8], scale: 1.5, opacity: 0.18 },
+    { position: [4.0, 2.75, -2.5], scale: 1.1, opacity: 0.14 },
+    { position: [-3.9, -2.95, -2.7], scale: 1.18, opacity: 0.16 },
+    { position: [4.35, -2.45, -2.4], scale: 1.24, opacity: 0.12 },
+    { position: [0.25, 4.55, -3.2], scale: 0.94, opacity: 0.1 },
   ]
 
   fragmentSpecs.forEach((spec, index) => {
@@ -227,7 +227,7 @@ function addArtworkFragments() {
   })
 
   const halo = new THREE.Mesh(
-    new THREE.TorusGeometry(3.35, 0.08, 18, 180),
+    new THREE.TorusGeometry(4.15, 0.11, 18, 180),
     new THREE.MeshPhysicalMaterial({
       color: 0xb67cff,
       roughness: 0.18,
@@ -240,6 +240,7 @@ function addArtworkFragments() {
   )
 
   halo.rotation.set(1.05, 0.22, 0.38)
+  halo.position.set(0, 0.35, -0.25)
   artworkGroup.add(halo)
 }
 
@@ -262,7 +263,7 @@ function loadTypography() {
         depth: 0.14,
         color: 0x5bd5ff,
         emissive: 0x123d52,
-        position: [2.35, 1.05, -0.95],
+        position: [3.05, 1.15, -0.95],
         rotation: [0.16, -0.34, 0.04],
       })
 
@@ -271,7 +272,7 @@ function loadTypography() {
         depth: 0.12,
         color: 0xffb366,
         emissive: 0x55240f,
-        position: [1.75, -2.2, 0.35],
+        position: [2.55, -2.8, 0.35],
         rotation: [-0.12, -0.18, 0.16],
       })
 
@@ -280,7 +281,7 @@ function loadTypography() {
         depth: 0.1,
         color: 0xcfb4ff,
         emissive: 0x2f1b52,
-        position: [-2.7, -1.4, -1.2],
+        position: [-3.45, -2.05, -1.2],
         rotation: [0.12, 0.56, -0.12],
       })
 
@@ -289,8 +290,17 @@ function loadTypography() {
         depth: 0.08,
         color: 0xeef2ff,
         emissive: 0x252544,
-        position: [0.45, 3.05, -1.1],
+        position: [0.45, 4.0, -1.1],
         rotation: [-0.16, -0.08, 0.02],
+      })
+
+      addWord(font, 'TRANSFORMATION', {
+        size: 0.28,
+        depth: 0.07,
+        color: 0xffcf9a,
+        emissive: 0x4a2208,
+        position: [0.2, -4.2, -1.3],
+        rotation: [0.08, 0.02, -0.02],
       })
     },
     undefined,
@@ -322,11 +332,11 @@ function animate(time) {
   portraitGroup.rotation.y = -0.45 + pointer.x * 0.18
   portraitGroup.rotation.x = -0.12 + pointer.y * 0.1
   portraitGroup.position.y = Math.sin(t * 0.7) * 0.12
-  portraitGroup.position.x = 4.35 + Math.cos(t * 0.45) * 0.08
+  portraitGroup.position.x = 4.9 + Math.cos(t * 0.45) * 0.08
 
-  logoGroup.rotation.y = 0.52 + pointer.x * 0.1 + Math.sin(t * 0.22) * 0.05
-  logoGroup.rotation.x = -0.12 + pointer.y * 0.05
-  logoGroup.position.y = 0.2 + Math.cos(t * 0.5) * 0.1
+  logoGroup.rotation.y = 0.34 + pointer.x * 0.08 + Math.sin(t * 0.22) * 0.05
+  logoGroup.rotation.x = -0.16 + pointer.y * 0.05
+  logoGroup.position.y = 0.45 + Math.cos(t * 0.5) * 0.12
 
   artworkGroup.rotation.y = -0.08 + t * 0.08 + pointer.x * 0.05
   artworkGroup.rotation.x = Math.sin(t * 0.28) * 0.03 + pointer.y * 0.03
